@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <!-- Metadatos -->
     <meta charset="UTF-8">
@@ -15,10 +16,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@700&family=Rubik+Dirt&display=swap" rel="stylesheet">
     <title>Ingresar</title>
 </head>
+
 <body>
     <header class="d-flex justify-content-between align-items-center">
         <div class="contenedor-titulo-socials d-flex align-items-center">
-            <a class="enlace-titulo" href="../index.html"><h1>Culture <span>Techno</span></h1></a>
+            <a class="enlace-titulo" href="../index.html">
+                <h1>Culture <span>Techno</span></h1>
+            </a>
             <a href="https://www.facebook.com"><i class="bi bi-facebook"></i></a>
             <a href="https://www.instagram.com"><i class="bi bi-instagram"></i></a>
             <a href="https://www.twitter.com"><i class="bi bi-twitter"></i></a>
@@ -38,42 +42,43 @@
         </div>
     </header>
 
-        <section>
-            <div class="titulo-logo">
-                <h2 class="titulo1">Formulario de ingreso</h2>
+    <section class="d-flex flex-column">
+        <div class="titulo-logo">
+            <h2 class="titulo1">Formulario de ingreso</h2>
+        </div>
+
+        <div class="contenedor-textura-formulario d-flex">
+            <div class="textura">
+                <img src="../img/texture1.png" alt="" srcset="">
             </div>
-    
-            <div class="contenedor-textura-formulario d-flex">
-                <div class="textura">
-                    <img src="../img/texture1.png" alt="" srcset="">
-                </div>
-                <div class="formulario">
-                    <form action="">
-                      <div class="contenedor-label">
+            <div class="formulario">
+                <form action="">
+                    <div class="contenedor-label">
                         <label for="nombreInput">Nombre</label>
                         <input type="text" id="nombreInput">
-                      </div>
-                      <div class="contenedor-label">
+                    </div>
+                    <div class="contenedor-label">
                         <label for="contraseniaInput">Contraseña</label>
                         <input type="password" id="contraseniaInput">
-                      </div>
-                      <div class="contenedor-label">
+                    </div>
+                    <div class="contenedor-label">
                         <label for="">Ingresar con:</label>
                         <div class="socials">
-                          <a href="https://www.gmail.com"><i class="bi-google"></i></a>
-                          <a href="https://www.facebook.com"><i class="bi-facebook"></i></a>
+                            <a href="https://www.gmail.com"><i class="bi-google"></i></a>
+                            <a href="https://www.facebook.com"><i class="bi-facebook"></i></a>
                         </div>
-                      </div>
-                      <a class="recuperar-contra" href="">¿Olvidaste tu contraseña?</a>
-                    </form>
-                    <input class="boton" type="button" value="Validar" id="validarButton">
-                </div> 
+                    </div>
+                    <a class="recuperar-contra" href="">¿Olvidaste tu contraseña?</a>
+                </form>
+                <input class="boton" type="button" value="Validar" id="validarButton">
             </div>
-        </section>
+        </div>
+    </section>
 
     <footer class="d-flex align-items-center justify-content-center">
         <p>PLUR DM ©2023 😎</p>
     </footer>
     <script src="../js/ingresar.js"></script>
 </body>
+
 </html>
