@@ -15,7 +15,7 @@ header {
     background: black;
     width: 100%;
     color: white;
-    height: 80px;
+    height: 75px;
     display: flex;
     align-items: center;
 }
@@ -23,19 +23,27 @@ header h1{
     margin-left: 20px;
     font-family: 'Lilita One', cursive;
 }
-.contenedor-imagen,.contenedor-textos,.contenedor-tarjetas{
+span{
+    color: lightblue;
+}
+
+/* BANNER */
+
+.contenedor-imagen,.contenedor-textos,.cards-form{
     margin: 2% 10% 2% 10%;
     overflow: hidden;
+}
+.contenedor-imagen{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .contenedor-imagen p{
     color: white;
     font-family: 'Lilita One', cursive;
-    font-size: 7rem;
+    font-size: 5rem;
     z-index: 1;
     position: absolute;
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%, -50%);
 }
 .contenedor-imagen img{
     width: 100%;
@@ -49,4 +57,53 @@ header h1{
 }
 .contenedor-textos p{
     font-size: 1.2rem;
+}
+
+/* CARDS */
+.cards-form{
+    height: 720px;
+}
+.contenedor-tarjetas{
+    width: 50%;
+}
+.card-img-top{
+    height: 200px;
+    object-fit: cover;
+}
+
+/* FORM */
+
+.contenedor-formulario{
+    width: 50%;
+    background-image: url("../img/textura.jpg");
+    background-size: cover;
+}
+.contenedor-formulario p{
+    text-align: center;
+    font-size: 1.5rem;
+    font-family: 'Lilita One', cursive;
+}
+.formulario{
+    background: rgba(167, 222, 241, 0.884);
+    border: 1px solid;
+    border-radius: 10px;
+}
+.contenedor-label{
+    padding: 10px;
+}
+.contenedor-label label{
+    font-weight: bold;
+}
+.contenedor-label input{
+    height: 2.5rem;
+    width: 300px;
+}
+.contenedor-ckeckbox{
+    font-weight: bold;
+    margin-top: 12px;
+}
+.boton{
+    height: 2.5rem;
+    width: 300px;
+    margin: 30px 10px 10px 10px;
 }
