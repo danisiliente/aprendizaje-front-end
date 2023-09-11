@@ -10,5 +10,4 @@ function seleccionar(link){
     links[5].className="";
 
     link.className="selected";
-
 }
