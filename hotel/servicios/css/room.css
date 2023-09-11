@@ -8,7 +8,8 @@
 }
 body{
     /* background-image: url("../img/textura.jpg"); */
-    font-family: 'Oswald', sans-serif; 
+    font-family: 'Oswald', sans-serif;
+
 }
 header {
     background-image: linear-gradient( to right, #0b3b65, rgb(79, 62, 62), #0b3b65);
@@ -25,27 +26,3 @@ header h1{
 span{
     color: lightblue;
 }
-
-/* BEBIDAS */
-
-.top{
-    margin: 2% 10% 2% 10%;
-    text-align: center;
-}
-.imagenes-bebidas{
-    display: flex;
-    height: 430px;
-}
-.imagenes-bebidas img{
-    width: 0px;
-    flex-grow: 1;
-    object-fit: cover;
-    /* opacity: .9;
-    transition: .5s ease; */
-}
-/* .imagenes-bebidas img:hover{
-    cursor: pointer;
-    width: 300px;
-    opacity: 1;
-    filter: contrast(120%);
-} */

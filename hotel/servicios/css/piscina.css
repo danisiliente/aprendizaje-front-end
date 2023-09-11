@@ -12,7 +12,7 @@ body{
 
 }
 header {
-    background: black;
+    background-image: linear-gradient( to right, #0b3b65, rgb(79, 62, 62), #0b3b65);
     width: 100%;
     color: white;
     height: 75px;
