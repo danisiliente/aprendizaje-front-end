@@ -206,7 +206,7 @@ background-size: cover;
 #reservas .titulo {
     width: 100%;
     text-align: center;
-    margin-bottom: 60px;
+    margin-bottom: 30px;
     font-family: 'Lilita One', cursive;
     color: white;
     text-shadow: 3px 3px 10px gray; 
@@ -218,7 +218,7 @@ background-size: cover;
     padding: 30px;
 }
 .item{
-    margin-top: 60px;
+    margin-top: 30px;
 }
 .item .overlay h4{
     color: white;
@@ -235,6 +235,36 @@ background-size: cover;
 }
 .item .overlay .enlaces:hover{
     background: #0b3b65;
+}
+.formulario-reserva{
+    background-image: linear-gradient( to right, #0b3b65, rgb(79, 62, 62), #0b3b65);
+    border-radius: 15px;
+}
+.info-r label{
+    margin-top: 40px;
+    font-weight: bold;
+    color: white;
+}
+.info-r input{
+    height: 30px;
+    width: 100px;
+    border-radius: 5px;
+}
+.info select {
+    height: 30px;
+    width: 100px;
+    border-radius: 5px;
+}
+.btn_enviar-r{
+    border-radius: 5px;
+    height: 30px;
+    width: 100px;
+    background: #0F2C59;
+    color: white;
+}
+.btn_enviar-r:hover{
+    background: #0b3b65;
+    color: lightgray;
 }
 
 /* CONTACTOS */
