@@ -14,6 +14,59 @@ function App() {
   const [password, setPassword] = useState('');
   const [id_tipo, setId_tipo] = useState('');
 
+  // Estados consultar, actualizar
+
+  const[usuariosList,setUsuarios] = useState([]);
+  const [editar,setEditar] = useState(false);
+
+  // Método leer
+
+  const listar = ()=>{
+    Axios.get("http://localhost:3001/usuarios").then((response)=>{
+      setUsuarios(response.data);
+    });
+  }
+
+  // Método actualizar
+
+  const update = ()=>{
+    Axios.put("http://localhost:3001/update",{
+      id_usuario: id_usuario,
+      usuario: usuario,
+      nombre: nombre,
+      apellido: apellido,
+      correo: correo,
+      password: password,
+      id_tipo: id_tipo
+    }).then(()=>{
+      listar();
+      clear();
+      Swal.fire({
+        title: "<strong>Actualización exitosa</strong>",
+        html: "<i>El usuario <strong>"+nombre+"</strong> fue actualizado con éxito</i>",
+        icon: 'success',
+        timer:3000
+      })
+    }).catch(function(error){
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: JSON.parse(JSON.stringify(error)).message==="Network Error"?"Intente más tarde":JSON.parse(JSON.stringify(error)).message
+      })
+    });
+  }
+  // Pasar datos de actualizar al formulario
+  const editarUsuario = (val)=>{
+    setEditar(true);
+    setId_usuario(val.id_usuario);
+    setUsuario(val.usuario);
+    setNombre(val.nombre);
+    setApellido(val.apellido);
+    setCorreo(val.correo);
+    setPassword(val.password);
+    setId_tipo(val.id_tipo);
+  }
+
   // Método crear
 
   const add = ()=>{
@@ -115,6 +168,52 @@ function App() {
       </div>
       </div>
       </div>
+
+      <div className='lista'>
+      <table>
+        <thead>
+          <tr>
+            <th scope='col'>Documento</th>
+            <th scope='col'>Usuario</th>
+            <th scope='col'>Nombre</th>
+            <th scope='col'>Apellido</th>
+            <th scope='col'>Email</th>
+            <th scope='col'>Password</th>
+            <th scope='col'>Tipo usuario</th>
+            <th scope='col'>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+        
+        {
+          usuariosList.map((val,key)=>{
+            return <tr key={val.id_usuario}>
+              <th>{val.id_usuario}</th>
+              <td>{val.usuario}</td>
+              <td>{val.nombre}</td>
+              <td>{val.apellido}</td>
+              <td>{val.correo}</td>
+              <td>{val.password}</td>
+              <td>{val.id_tipo}</td>
+              <td>
+              <div className="btn-group" role="group" aria-label="Basic example">
+                <button type="button"
+                onClick={()=>{
+                  editarUsuario(val);
+                }}
+                className="btn btn-warning">Actualizar</button>
+                <button type="button" onClick={()=>{
+                  deleteUsu(val);
+                }} className="btn btn-danger">Eliminar</button>
+              </div>
+              </td>
+            </tr>
+          })
+        }
+        </tbody>
+      </table>
+      </div>
+
     </div>
   );
 }
