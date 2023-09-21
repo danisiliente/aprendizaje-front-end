@@ -1,10 +1,12 @@
 const express = require("express");
 const app = express();
 const mysql = require("mysql");
-const cors = require("cors")
+const cors = require("cors");
 
 app.use(cors());
 app.use(express.json());
+
+//Conexión
 
 const db = mysql.createConnection({
     host:"localhost",
@@ -12,6 +14,8 @@ const db = mysql.createConnection({
     password:"",
     database:"db_hotel"
 });
+
+// Método registrar
 
 app.post("/create",(req,res)=>{
     const id_usuario = req.body.id_usuario;
@@ -33,10 +37,6 @@ app.post("/create",(req,res)=>{
     }
     );
 
-});
-
-app.listen(3001,()=>{
-    console.log("Puerto activo")
 });
 
 app.get("/usuarios",(req,res)=>{
@@ -69,4 +69,20 @@ app.put("/update",(req,res)=>{
         }
     }
     );
+});
+
+app.delete("/delete/:id_usuario",(req,res)=>{
+    const id_usuario = req.params.id_usuario;
+
+    db.query('DELETE FROM datos_usuario WHERE id_usuario=?', id_usuario,(err,result)=>{
+        if(err){
+            console.log(err);
+        }else{
+            res.send(result);
+        }
+    });
+});
+
+app.listen(3001,()=>{
+    console.log("Puerto activo")
 });

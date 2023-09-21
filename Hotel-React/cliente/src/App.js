@@ -7,23 +7,44 @@ import Swal from "sweetalert2";
 function App() {
 
   const [id_usuario, setId_usuario] = useState(0);
-  const [usuario, setUsuario] = useState('');
-  const [nombre, setNombre] = useState('');
-  const [apellido, setApellido] = useState('');
-  const [correo, setCorreo] = useState('');
-  const [password, setPassword] = useState('');
-  const [id_tipo, setId_tipo] = useState('');
+  const [usuario, setUsuario] = useState("");
+  const [nombre, setNombre] = useState("");
+  const [apellido, setApellido] = useState("");
+  const [correo, setCorreo] = useState("");
+  const [password, setPassword] = useState("");
+  const [id_tipo, setId_tipo] = useState("");
 
   // Estados consultar, actualizar
 
-  const[usuariosList,setUsuarios] = useState([]);
   const [editar,setEditar] = useState(false);
+  const[usuariosList,setUsuarios] = useState([]);
 
-  // Método leer
+  // Método crear
 
-  const listar = ()=>{
-    Axios.get("http://localhost:3001/usuarios").then((response)=>{
-      setUsuarios(response.data);
+  const add = ()=>{
+    Axios.post("http://localhost:3001/create",{
+      id_usuario: id_usuario,
+      usuario: usuario,
+      nombre: nombre,
+      apellido: apellido,
+      correo: correo,
+      password: password,
+      id_tipo: id_tipo
+    }).then(()=>{
+      listar();
+      clear();
+      Swal.fire({
+        title: "<strong>Registro exitoso</strong>",
+        html: "<i>El usuario <strong>"+nombre+"</strong> fue registrado con éxito</i>",
+        icon: 'success',
+        timer:3000
+      })
+    }).catch(function(error){
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: JSON.parse(JSON.stringify(error)).message==="Network error"?"Intente más tarde":JSON.parse(JSON.stringify(error)).message
+      })
     });
   }
 
@@ -55,46 +76,76 @@ function App() {
       })
     });
   }
-  // Pasar datos de actualizar al formulario
-  const editarUsuario = (val)=>{
-    setEditar(true);
-    setId_usuario(val.id_usuario);
-    setUsuario(val.usuario);
-    setNombre(val.nombre);
-    setApellido(val.apellido);
-    setCorreo(val.correo);
-    setPassword(val.password);
-    setId_tipo(val.id_tipo);
-  }
 
-  // Método crear
+  // Método eliminar
 
-  const add = ()=>{
-    Axios.post("http://localhost:3001/create",{
-      id_usuario: id_usuario,
-      usuario: usuario,
-      nombre: nombre,
-      apellido: apellido,
-      correo: correo,
-      password: password,
-      id_tipo: id_tipo
-    }).then(()=>{
-      listar();
-      clear();
-      Swal.fire({
-        title: "<strong>Registro exitoso</strong>",
-        html: "<i>El usuario <strong>"+nombre+"</strong> fue registrado con éxito</i>",
-        icon: 'success',
-        timer:3000
-      })
-    }).catch(function(error){
-      Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: JSON.parse(JSON.stringify(error)).message=="Network error"?"Intente más tarde":JSON.parse(JSON.stringify(error)).message
-      })
+  const deleteUsu = (val)=>{
+
+    Swal.fire({
+      title: 'Confirmar eliminado?',
+      html: "<i>Realmente desea eliminar a <strong>"+val.nombre+"</strong>?</i>",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, eliminarlo!'
+    }).then((result) => {
+      if (result.isConfirmed){
+        Axios.delete(`http://localhost:3001/delete/${val.id_usuario}`).then((res)=>{
+          listar();
+          clear();
+          Swal.fire({
+            icon: 'success',
+            title: val.nombre+' fue eliminado.',
+            showConfirmButton: false,
+            timer: 2000
+          });
+        }).catch(function(error){
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'No se logró eliminar el usuario',
+            footer: JSON.parse(JSON.stringify(error)).message==="Network Error"?"Intente más tarde":JSON.parse(JSON.stringify(error)).message
+          })
+        });
+      }
     });
   }
+
+  // Limpiar datos del formulario
+
+  const clear = ()=>{
+    setId_usuario("");
+    setUsuario("");
+    setNombre("");
+    setApellido("");
+    setCorreo("");
+    setPassword("");
+    setId_tipo("");
+    setEditar("");
+  }
+
+    // Pasar datos de actualizar al formulario
+    const editarUsuario = (val)=>{
+      setEditar(true);
+      setId_usuario(val.id_usuario);
+      setUsuario(val.usuario);
+      setNombre(val.nombre);
+      setApellido(val.apellido);
+      setCorreo(val.correo);
+      setPassword(val.password);
+      setId_tipo(val.id_tipo);
+    }
+
+  // Método leer
+
+  const listar = ()=>{
+    Axios.get("http://localhost:3001/usuarios").then((response)=>{
+      setUsuarios(response.data);
+    });
+  }
+
+  // Interfaz usuario
 
   return (
     <div className='container'>
@@ -151,7 +202,6 @@ function App() {
                 }}
                 className='form-control' value={id_tipo}/>
             </div>
-
         </div>
 
       <div className='card-footer text-muted'>
@@ -167,10 +217,10 @@ function App() {
 
       </div>
       </div>
-      </div>
+    </div>
 
       <div className='lista'>
-      <table>
+      <table className="table table-striped">
         <thead>
           <tr>
             <th scope='col'>Documento</th>

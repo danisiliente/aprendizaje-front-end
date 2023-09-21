@@ -9,7 +9,8 @@
   width: 71vw;
   display: flex;
   justify-content: space-around;
-  background: #0F2C59;
+  background: linear-gradient(transparent, black), url(https://images.pexels.com/photos/17449457/pexels-photo-17449457.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
+  background-size: cover;
 }
 .card-header{
   font-size: calc(40px + 2vmin);
@@ -41,7 +42,7 @@
 }
 .info label{
   display: block;
-  color: lightcoral;
+  color: #2d2567;
   font-weight: bold;
   text-align: left;
 }
@@ -49,10 +50,10 @@
   display: block;
   width: 100%;
   border: none;
-  border-bottom: 1px solid chocolate;
+  border-bottom: 1px solid #4d4343;
   padding: 5px;
   outline: none;
-  background-color: white;
+  background-color: #e4dada;
 }
 .lista{
   font-size: 20px;
